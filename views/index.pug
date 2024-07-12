@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1 Top-Secret High-Security 256psh encrypted Message Room
+  
+  // Display each message
+  ul
+    each message in messages
+      div(style={"display":"flex", "gap":"10px", "margin-bottom": '8px'})
+        div(style={"font-weight": "600"})= `${message.user}:`
+        div(style={"font-weight": "500", "margin-bottom": "2px"}).messageText= message.text
+        div(style={"font-style":"italic"})= `(${message.added})`
+
+  // Form for new message
+  h3 Post a New Message
+  form(action='/new', method='POST')
+    div
+      label Message:
+      input(type='text', name='message', value='')
+    div
+      label Your name:
+      input(type='text', name='name', value='')
+    div
+      button(type='submit') Submit
+
